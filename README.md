@@ -4,6 +4,13 @@ Lightweight catalog for the [qylock-oma](https://github.com/mjtiempo/qylock-oma)
 Omarchy plugin: the theme **list** (`index.json`) + small **preview images**
 used to populate the theme grid.
 
+`index.json` is a **signed manifest** (`index.json.sig`, ssh-keygen ed25519):
+it pins the reviewed upstream commit and git tree SHAs, and carries a
+SHA-256 digest for **every file** of every theme. The plugin's privileged
+SDDM helper verifies that signature and those digests before installing a
+theme, so this file is the review point for exactly which bytes may reach
+`/usr/share/sddm/themes`.
+
 The heavy theme assets (videos, images, QML) are **not** here — the plugin
 fetches them on demand (Apply / Preview) from the upstream source:
 
